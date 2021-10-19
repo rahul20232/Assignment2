@@ -10,6 +10,7 @@ interface Bagpack{
     void view_comments();
     void add_comments(String com,Date d);
 }
+
 class material extends Instructor{
     private String slide_material;
     private int num_slides;
@@ -60,6 +61,7 @@ class material extends Instructor{
         return false;
     }
 }
+
 class slide extends material{
 
     public slide(String slide_material, int num, ArrayList contents,Date d,String name) {
@@ -67,6 +69,7 @@ class slide extends material{
     }
 
 }
+
 class lecture extends material{
 //    private String lecture_material;
 //    private String filename;
@@ -79,6 +82,7 @@ class lecture extends material{
 
 
 }
+
 class Instructor implements Bagpack{
     private String name;
     //private String slide_material;
@@ -141,6 +145,7 @@ class Instructor implements Bagpack{
     }
 
 }
+
 interface Assessments{
     void close();
     int getID();
@@ -149,6 +154,7 @@ interface Assessments{
     void set_submission(String name,String filename,int ID, boolean graded, int Marks);
 
 }
+
 class Assignment implements Assessments{
     private boolean open = true;
     private String problem_statement;
@@ -203,6 +209,7 @@ class Assignment implements Assessments{
     }
 
 }
+
 class Quiz implements Assessments{
     private boolean open = true;
     private String question;
@@ -287,6 +294,7 @@ class Student implements Bagpack {
     }
 
 }
+
 class Comments{
     private String comment;
     private Date d;
@@ -306,6 +314,7 @@ class Comments{
         return this.name;
     }
 }
+
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -503,32 +512,37 @@ public class Main {
 
                             }
                             if(input_3==6){
+                                boolean flag = false;
                                 System.out.println("List of Open Assignments:");
                                 for(int r = 0;r<ass1.size();r++){
                                     if(ass1.get(r).isOpen()){
                                         System.out.println("ID: "+ass1.get(r).getID()+" Assignment: "+ass1.get(r).getPS()+" Max Marks: "+ass1.get(r).getMax_Marks());
                                         System.out.println("----------------");
+                                        flag = true;
                                     }
                                 }
                                 for(int r = 0;r<q.size();r++){
                                     if(q.get(r).isOpen()){
                                         System.out.println("ID: "+q.get(r).getID()+" Question: "+q.get(r).getPS());
                                         System.out.println("----------------");
+                                        flag = true;
                                     }
                                 }
-                                System.out.print("Enter ID of Assignment to close: ");
-                                int n = sc.nextInt();
-                                for(int r = 0;r<ass1.size();r++){
-                                    if(ass1.get(r).isOpen()){
-                                        if(ass1.get(r).getID()==n){
-                                            ass1.get(r).close();
+                                if(flag){
+                                    System.out.print("Enter ID of Assignment to close: ");
+                                    int n = sc.nextInt();
+                                    for(int r = 0;r<ass1.size();r++){
+                                        if(ass1.get(r).isOpen()){
+                                            if(ass1.get(r).getID()==n){
+                                                ass1.get(r).close();
+                                            }
                                         }
                                     }
-                                }
-                                for(int r = 0;r<q.size();r++){
-                                    if(q.get(r).isOpen()){
-                                        if(q.get(r).getID()==n){
-                                            q.get(r).close();
+                                    for(int r = 0;r<q.size();r++){
+                                        if(q.get(r).isOpen()){
+                                            if(q.get(r).getID()==n){
+                                                q.get(r).close();
+                                            }
                                         }
                                     }
                                 }
