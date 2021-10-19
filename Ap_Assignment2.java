@@ -363,7 +363,7 @@ public class Main {
                                     String a1 = sc.nextLine();
                                     System.out.print("Enter filename of video:");
                                     String b1 = sc.next();
-                                    if(b1.substring(b1.length()-4,b1.length()).equals(".mp4")){
+                                    if(b1.substring(b1.length()-4,b1.length()).equals(".mp4") && b1.length()>4){
                                         Date d = new Date();
                                         m.add(instructors.get(i).add_class_material_2(a1,b1,d));
                                     }
@@ -632,7 +632,7 @@ public class Main {
                                             if(ass1.get(i).getID()==n){
                                                 System.out.print("Enter filename of assignment: ");
                                                 String s = sc.next();
-                                                if(s.substring(s.length()-4,s.length()).equals(".zip")){
+                                                if(s.substring(s.length()-4,s.length()).equals(".zip") && s.length()>4){
                                                     String name = students.get(r).getName();
                                                     ass1.get(i).set_submission(name,s,students.get(r).getID(),false,0);
                                                 }
