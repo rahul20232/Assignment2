@@ -5,11 +5,10 @@ import java.util.Scanner;
 import java.util.Date;
 
 interface Bagpack{
-    //void view_material();
-//    void assessments();
+    String getName();
+    int getID();
     void view_comments();
     void add_comments(String com,Date d);
-//    void Logout();
 }
 class material extends Instructor{
     private String slide_material;
@@ -97,8 +96,8 @@ class Instructor implements Bagpack{
 
     Instructor() {
     }
-
-    String getName(){
+    @Override
+    public String getName(){
         return name;
     }
 
@@ -130,6 +129,7 @@ class Instructor implements Bagpack{
             return q;
         }
 
+    @Override
     public int getID(){
         return this.ID;
     }
@@ -142,10 +142,11 @@ class Instructor implements Bagpack{
 
 }
 interface Assessments{
-    public void close();
-    public int getID();
-    public String getPS();
-    public boolean isOpen();
+    void close();
+    int getID();
+    String getPS();
+    boolean isOpen();
+    void set_submission(String name,String filename,int ID, boolean graded, int Marks);
 
 }
 class Assignment implements Assessments{
@@ -183,7 +184,7 @@ class Assignment implements Assessments{
         return false;
     }
 
-
+    @Override
     public void set_submission(String name, String filename,int ID, boolean graded, int Marks){
         ArrayList arr1 = new ArrayList();
         arr1.add(name);
@@ -212,22 +213,26 @@ class Quiz implements Assessments{
         this.question = ps;
         this.ID = ID;
     }
-
+    @Override
     public void close(){
         this.open = false;
     }
+    @Override
     public boolean isOpen(){
         if(this.open){
             return true;
         }
         return false;
     }
+    @Override
     public String getPS(){
         return this.question;
     }
+    @Override
     public int getID(){
         return this.ID;
     }
+    @Override
     public void set_submission(String name,String filename,int ID, boolean graded, int Marks){
         ArrayList arr1 = new ArrayList();
         arr1.add(name);
@@ -257,7 +262,7 @@ class Student implements Bagpack {
         this.ID = ID;
     }
 
-
+    @Override
     public String getName(){
         return this.name;
     }
@@ -269,6 +274,8 @@ class Student implements Bagpack {
         }
 
     }
+
+    @Override
     public int getID(){
         return this.ID;
     }
@@ -766,4 +773,3 @@ public class Main {
         System.out.println("7. Logout");
     }
 }
-
