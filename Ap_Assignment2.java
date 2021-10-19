@@ -438,18 +438,15 @@ public class Main {
                                 System.out.print("Enter ID of assessment to view submissions:");
                                 int a1 = sc.nextInt();
                                 for(int r = 0;r<ass1.size();r++){
-                                    if(ass1.get(r).isOpen()){
-                                        if(ass1.get(r).getID()==a1){
-                                            for(int p = 0;p<ass1.get(r).arr.size();p++){
-                                                if(!(boolean)ass1.get(r).arr.get(p).get(3)){
-                                                    System.out.println(ass1.get(r).arr.get(p).get(2)+". "+ass1.get(r).arr.get(p).get(0));
-                                                }
+                                    if(ass1.get(r).getID()==a1){
+                                        for(int p = 0;p<ass1.get(r).arr.size();p++){
+                                            if(!(boolean)ass1.get(r).arr.get(p).get(3)){
+                                                System.out.println(ass1.get(r).arr.get(p).get(2)+". "+ass1.get(r).arr.get(p).get(0));
                                             }
                                         }
                                     }
                                 }
                                 for(int r = 0;r<q.size();r++){
-                                    if(q.get(r).isOpen()){
                                         if(q.get(r).getID()==a1){
                                             for(int p = 0;p<q.get(r).arr.size();p++){
                                                 if(!(boolean)q.get(r).arr.get(p).get(3)){
@@ -457,11 +454,9 @@ public class Main {
                                                 }
                                             }
                                         }
-                                    }
                                 }
                                 int n1 = sc.nextInt();
                                 for(int r = 0;r<ass1.size();r++){
-                                    if(ass1.get(r).isOpen()){
                                         if(ass1.get(r).getID()==a1){
                                             for(int p = 0;p<ass1.get(r).arr.size();p++){
                                                 if(!(boolean)ass1.get(r).arr.get(p).get(3)){
@@ -480,10 +475,8 @@ public class Main {
                                                 }
                                             }
                                         }
-                                    }
                                 }
                                 for(int r = 0;r<q.size();r++){
-                                    if(q.get(r).isOpen()){
                                         if(q.get(r).getID()==a1){
                                             for(int p = 0;p<q.get(r).arr.size();p++){
                                                 if(!(boolean)q.get(r).arr.get(p).get(3)){
@@ -497,7 +490,6 @@ public class Main {
                                                 }
                                             }
                                         }
-                                    }
                                 }
 
 
@@ -594,17 +586,15 @@ public class Main {
                             }
                             if(input_3==3){
                                 boolean flag = false;
-                                boolean submitted = false;
-                                boolean submitted_1 = false;
                                 System.out.println("Pending assessments");
                                 for(int i = 0;i<ass1.size();i++){
                                     if(ass1.get(i).isOpen()){
+                                        boolean submitted = false;
                                         for(int p = 0;p<ass1.get(i).arr.size();p++){
                                             if((int)ass1.get(i).arr.get(p).get(2)==students.get(r).getID()){
-                                                if(!(boolean) ass1.get(i).arr.get(p).get(5)){
+                                                if((boolean) ass1.get(i).arr.get(p).get(5)==false){
                                                     System.out.println("ID: "+ass1.get(i).getID()+" Assignment: "+ass1.get(i).getPS()+" Max Marks: "+ass1.get(i).getMax_Marks());
                                                     flag = true;
-
                                                 }
                                                 submitted = true;
                                             }
@@ -617,9 +607,10 @@ public class Main {
                                 }
                                 for(int i = 0;i<q.size();i++){
                                     if(q.get(i).isOpen()){
+                                        boolean submitted_1 = false;
                                         for(int p = 0;p<q.get(i).arr.size();p++){
                                             if((int)q.get(i).arr.get(p).get(2)==students.get(r).getID()){
-                                                if(!(boolean) q.get(i).arr.get(p).get(5)){
+                                                if((boolean) q.get(i).arr.get(p).get(5)==false){
                                                     System.out.println("ID: "+q.get(i).getID()+" Question: "+q.get(i).getPS());
                                                     flag = true;
                                                 }
@@ -677,6 +668,15 @@ public class Main {
                                         }
                                     }
                                 }
+                                for(int i = 0;i< q.size();i++){
+                                    for(int l = 0;l<q.get(i).arr.size();l++){
+                                        if((int) q.get(i).arr.get(l).get(2)==students.get(r).getID()){
+                                            if(!(boolean)q.get(i).arr.get(l).get(3)){
+                                                System.out.println(q.get(i).arr.get(l).get(1));
+                                            }
+                                        }
+                                    }
+                                }
                                 System.out.println("Graded submissions");
                                 for(int i = 0;i< ass1.size();i++){
                                     for(int l = 0;l<ass1.get(i).arr.size();l++){
@@ -685,6 +685,15 @@ public class Main {
                                                 System.out.println(ass1.get(i).arr.get(l).get(1));
                                                 System.out.println("Marks scored: "+ass1.get(i).arr.get(l).get(4));
                                                 System.out.println("Graded by: "+ass1.get(i).arr.get(l).get(6));
+                                            }
+                                        }
+                                    }
+                                }
+                                for(int i = 0;i< q.size();i++){
+                                    for(int l = 0;l<q.get(i).arr.size();l++){
+                                        if((int) q.get(i).arr.get(l).get(2)==students.get(r).getID()){
+                                            if((boolean)q.get(i).arr.get(l).get(3)){
+                                                System.out.println(q.get(i).arr.get(l).get(1));
                                             }
                                         }
                                     }
@@ -757,3 +766,4 @@ public class Main {
         System.out.println("7. Logout");
     }
 }
+
